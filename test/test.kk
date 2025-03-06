@@ -9,14 +9,14 @@ import std/test
 
 // Some simple examples
 fun test-tests()
-  basic/scope("Basics")
-    with basic-nested/scope("Another")
-    scoped/test("Returns continue tests")
-      val res = expect-result(1) fn() 2
-      println("Continued!")
-      expect(2) fn() 1 + res
-      expect(2) fn() 1
-  basic/test("Wrong expect")
-    expect(1) fn() 2
-  basic/test("Additional info")
-    expect(1, {throw("Some error somewhere")}, details="Really expected 1 because I proved it!") 
+  scope("Basics")
+    group("Another")
+      test("Returns continue tests")
+        val res = expect-result(1) fn() 2
+        println("Continued!")
+        expect(2) fn() 1 + res
+        expect(2) fn() 1
+    test("Wrong expect")
+      expect(1) fn() 2
+    test("Additional info")
+      expect(1, {throw("Some error somewhere")}, details="Really expected 1 because I proved it!") 
